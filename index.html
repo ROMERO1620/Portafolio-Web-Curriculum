@@ -66,7 +66,7 @@
         .btn{
             text-decoration:none;
             background:white;
-            color:#0f4c81;
+            color:#365ee4;
             padding:12px 22px;
             border-radius:8px;
             font-weight:bold;
@@ -86,7 +86,54 @@
 
         .btn-secondary:hover{
             background:white;
-            color:#0f4c81;
+            color:#2252d8;
+        }
+
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .btn svg{
+            width:20px;
+            height:20px;
+            flex-shrink:0;
+        }
+
+        .btn-cv{
+            position:relative;
+            overflow:hidden;
+        }
+
+        .btn-cv .btn-label,
+        .btn-cv .btn-confirm{
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            transition:opacity .25s ease, transform .25s ease;
+        }
+
+        .btn-cv .btn-confirm{
+            position:absolute;
+            left:22px;
+            opacity:0;
+            transform:translateY(6px);
+            color:#18a805;
+        }
+
+        .btn-cv.is-confirmed .btn-label{
+            opacity:0;
+            transform:translateY(-6px);
+        }
+
+        .btn-cv.is-confirmed .btn-confirm{
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        .btn-cv.is-confirmed{
+            background:#e5f9ff;
         }
 
         .profile{
@@ -203,7 +250,7 @@
 <h2>Estudiante de Desarrollo Web | Front-End & Back-End</h2>
 
 <p>
-Soy estudiante de segundo año de la carrera deDesarrollo Web y estudiante de cuarto año de la carrera
+Soy estudiante de segundo año de la carrera de Desarrollo Web y estudiante de cuarto año de la carrera
 Ingeniería en Sistemas (Cuarto Año), apasionado por la tecnología,
 el desarrollo de aplicaciones web, el aprendizaje continuo y apasionado en la ciberseguridad. Mi objetivo es formar
 parte de una empresa donde pueda aportar mis conocimientos, seguir creciendo
@@ -217,15 +264,27 @@ tecnologías de Inteligencia Artificial.
 
 
 <a href="Currículo de GEOVANY GABRIEL GOMEZ ROMERO.pdf"
-class="btn"
-target="_blank">
-📄 Ver Currículum
+class="btn btn-cv"
+id="cvBtn"
+download="Curriculum - Geovany Gabriel Gomez Romero.pdf"
+target="_blank"
+rel="noopener">
+<span class="btn-label">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+Descargar Currículum
+</span>
+<span class="btn-confirm" role="status" aria-live="polite">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+¡Descarga iniciada!
+</span>
 </a>
 
 
 <a href="https://www.linkedin.com/feed"
 class="btn btn-secondary"
-target="_blank">
+target="_blank"
+rel="noopener">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
 LinkedIn
 </a>
 
@@ -390,6 +449,19 @@ contribuyo al éxito de la organización.
 </p>
 
 </footer>
+
+<script>
+    const cvBtn = document.getElementById('cvBtn');
+    if (cvBtn) {
+        cvBtn.addEventListener('click', () => {
+            cvBtn.classList.add('is-confirmed');
+            clearTimeout(cvBtn._resetTimer);
+            cvBtn._resetTimer = setTimeout(() => {
+                cvBtn.classList.remove('is-confirmed');
+            }, 2200);
+        });
+    }
+</script>
 
 </body>
 </html>
